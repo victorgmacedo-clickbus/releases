@@ -1,7 +1,18 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Tipe release'     
+        required: true
+        default: 'release:patch' 
+        type: choice
+        options:
+        - release:major
+        - release:minor
+        - release:patch
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -12,4 +23,5 @@ jobs:
     steps:
       - uses: rymndhng/release-on-push-action@master
         with:
-          bump_version_scheme: minor
+          bump_version_scheme: ${{ github.event.inputs.release }}
+          use_github_release_notes: true
