@@ -7,12 +7,12 @@ on:
       release:
         description: 'Tipe release'     
         required: true
-        default: 'release:patch' 
+        default: 'minor' 
         type: choice
         options:
-        - release:major
-        - release:minor
-        - release:patch
+        - major
+        - minor
+        - patch
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
